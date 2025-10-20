@@ -15,8 +15,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # --- NLTK Downloader ---
-# We check for and download 'stopwords' and 'punkt' separately
-# to ensure both are available, regardless of what's pre-installed.
+# We check for and download all required NLTK data packages.
+# This runs every time the app starts on Streamlit Cloud.
 try:
     stopwords.words('english')
 except LookupError:
@@ -24,11 +24,17 @@ except LookupError:
     nltk.download('stopwords')
 
 try:
-    # Test if 'punkt' is available. word_tokenize depends on it.
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     st.write("Downloading NLTK 'punkt' resource...")
     nltk.download('punkt')
+
+try:
+    # This is the one that was missing!
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    st.write("Downloading NLTK 'punkt_tab' resource...")
+    nltk.download('punkt_tab')
 
 # --- Page Configuration ---
 st.set_page_config(
