@@ -6,3 +6,4 @@ seaborn
 beautifulsoup4
 nltk
 scikit-learn
+joblib
