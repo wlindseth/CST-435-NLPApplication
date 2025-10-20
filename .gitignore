@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Temp scripts
+download_nltk.py
+
+# Python
+__pycache__/
+*.pyc
